@@ -10,7 +10,7 @@ import org.apache.spark.sql.SparkSession
   * @author Yangxq
   * @version 2017/12/8 10:28
   */
-object Word2VecTest {
+object Word2VecTest_3 {
 
     /**
       * 创建SparkSession上下文
@@ -32,9 +32,9 @@ object Word2VecTest {
       */
     def word2VecTest(ss: SparkSession) = {
         val documentDF = ss.createDataFrame(
-            Seq("Hi I heard about Spark".split(" "),
-                "I wish Java could use case classes".split(" "),
-                "Logistic regression models are neat".split(" ")).map(Tuple1.apply)).toDF("text")
+                            Seq("Hi I heard about Spark".split(" "), "I wish Java could use case classes".split(" "), "Logistic regression models are neat".split(" "))
+                    .map(Tuple1.apply)).toDF("text")
+        documentDF.show(false)
         val word2Vec = new Word2Vec().setInputCol("text").setOutputCol("result").setVectorSize(3).setMinCount(0)
         //​利用Word2VecModel把文档转变成特征向量
         val model = word2Vec.fit(documentDF)

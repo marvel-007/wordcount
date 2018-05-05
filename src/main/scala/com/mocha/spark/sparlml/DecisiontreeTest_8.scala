@@ -14,7 +14,7 @@ import org.apache.spark.sql.SparkSession
   * @author Yangxq
   * @version 2017/12/11 22:19
   */
-object DecisiontreeTest {
+object DecisiontreeTest_8 {
     /**
       * 创建SparkSession上下文
       *
@@ -32,7 +32,7 @@ object DecisiontreeTest {
       * @param ss
       */
     def DecisiontreeTest(ss: SparkSession) = {
-        val data = ss.sparkContext.textFile("G:\\ml-study\\test-data\\iris.txt").map(_.split(","))
+        val data = ss.sparkContext.textFile("file:///G:/ml-study/test-data/iris.txt").map(_.split(","))
                 .map(p => Iris(Vectors.dense(p(0).toDouble, p(1).toDouble, p(2).toDouble, p(3).toDouble), p(4).toString()))
         val dfall = ss.createDataFrame(data).createOrReplaceTempView("iris")
         val df = ss.sql("select * from iris")

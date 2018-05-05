@@ -72,8 +72,8 @@ object ReadAndSaveTest {
     }
 
     def parquetSaveTest(sparkSession: SparkSession) {
-        val df = sparkSession.read.json("file:///G:\\spark-study\\spark-2.1.0-bin-hadoop2.7\\examples\\src\\main\\resources\\people.json")
-        df.select("name", "age").write.mode(SaveMode.Append).parquet("G:\\newpeople1.parquet")
+        val df = sparkSession.read.json("file:///G:/spark-study/spark-2.1.0-bin-hadoop2.7/examples/src/main/resources/people.json")
+        df.repartition(1).select("name", "age").write.mode(SaveMode.Append).parquet("G:\\logs_firewall")
     }
 
 
@@ -146,11 +146,11 @@ object ReadAndSaveTest {
         //test1(sparkSession)
         //test2(initSparkSession(appname))
         //parquetReadTest(sparkSession)
-        // parquetSaveTest(sparkSession)
+         parquetSaveTest(initSparkSession(appname))
         //queryComTest(sparkContext(appname), initSparkSession(appname))
 
         //parquetSaveHdfsTest( initSparkSession(appname))
-        parquetReadHdfsTest(initSparkSession(appname))
+        //parquetReadHdfsTest(initSparkSession(appname))
     }
 
 

@@ -11,7 +11,7 @@ import org.apache.spark.sql.SparkSession
   * @author Yangxq
   * @version 2017/12/10 21:19
   */
-object ChiSqSelectorTest {
+object ChiSqSelectorTest_6 {
     /**
       * 创建SparkSession上下文
       *
@@ -30,7 +30,13 @@ object ChiSqSelectorTest {
       * @param ss
       */
     def ConverterTest(ss: SparkSession) = {
-        val df = ss.createDataFrame(Seq((1, Vectors.dense(0.0, 0.0, 18.0, 1.0), 1), (2, Vectors.dense(0.0, 1.0, 12.0, 0.0), 0), (3, Vectors.dense(1.0, 0.0, 15.0, 0.1), 0))).toDF("id", "features", "label")
+        val df = ss.createDataFrame(
+                Seq(
+                    (1, Vectors.dense(0.0, 0.0, 18.0, 1.0), 1),
+                    (2, Vectors.dense(0.0, 1.0, 12.0, 0.0), 0),
+                    (3, Vectors.dense(1.0, 0.0, 15.0, 0.1), 0)
+                )
+        ).toDF("id", "features", "label")
         df.show()
         //用卡方选择进行特征选择器的训练，为了观察地更明显，我们设置只选择和标签关联性最强的一个特征（可以通过setNumTopFeatures(..)方法进行设置）
         val selector_model = new ChiSqSelector().setNumTopFeatures(1).setFeaturesCol("features").setLabelCol("label").setOutputCol("selected-feature").fit(df)

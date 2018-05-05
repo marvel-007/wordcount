@@ -10,7 +10,7 @@ import org.apache.spark.sql.SparkSession
   * @author Yangxq
   * @version 2017/12/8 10:28
   */
-object CountVectorizerTest {
+object CountVectorizerTest_4 {
 
     /**
       * 创建SparkSession上下文

@@ -10,7 +10,7 @@ import org.apache.spark.sql.SparkSession
   * @author Yangxq
   * @version 2017/12/8 10:28
   */
-object TFIDFTest {
+object TFIDFTest_2 {
 
     /**
       * 创建SparkSession上下文
@@ -36,7 +36,12 @@ object TFIDFTest {
       */
     def pipelinesTest2(ss: SparkSession) = {
         //构建训练数据集
-        val sentenceData = ss.createDataFrame(Seq((0, "I heard about Spark and I love Spark"), (0, "I wish Java could use case classes"), (1, "Logistic regression models are neat"))).toDF("label", "sentence")
+        val sentenceData = ss.createDataFrame(
+            Seq(
+                     (0, "I heard about Spark and I love Spark"),
+                     (0, "I wish Java could use case classes"),
+                     (1, "Logistic regression models are neat")
+                  )).toDF("label", "sentence")
         //用tokenizer对句子进行分词
         val tokenizer = new Tokenizer().setInputCol("sentence").setOutputCol("words")
         val wordsData = tokenizer.transform(sentenceData)

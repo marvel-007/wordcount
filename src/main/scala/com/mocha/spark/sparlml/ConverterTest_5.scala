@@ -11,7 +11,7 @@ import org.apache.spark.sql.SparkSession
   * @author Yangxq
   * @version 2017/12/10 21:19
   */
-object ConverterTest {
+object ConverterTest_5 {
     /**
       * 创建SparkSession上下文
       *

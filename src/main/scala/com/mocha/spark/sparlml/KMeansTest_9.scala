@@ -11,7 +11,7 @@ import org.apache.spark.sql.SparkSession
   * @author Yangxq
   * @version 2017/12/11 22:19
   */
-object KMeansTest {
+object KMeansTest_9 {
     /**
       * 创建SparkSession上下文
       *
@@ -29,7 +29,7 @@ object KMeansTest {
       * @param ss
       */
     def KMeansTest(ss: SparkSession) = {
-        val data = ss.sparkContext.textFile("G:\\ml-study\\test-data\\iris.txt").map(line => {
+        val data = ss.sparkContext.textFile("file:///G:/ml-study/test-data/iris.txt").map(line => {
             model_instance(Vectors.dense(line.split(",").filter(_.matches("\\d*(\\.?)\\d*")).map(_.toDouble)))
         })
         val df = ss.createDataFrame(data)

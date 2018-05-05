@@ -58,9 +58,9 @@ object PipelinesMl_1 {
         val model = pipeline.fit(trainingData)
 
         //构建测试数据
-        val test = ss.createDataFrame(Seq((4L, "spark i j k"), (5L, "l m n"), (6L, "spark a"), (7L, "apache hadoop"))).toDF("id", "text")
-        model.transform(test).select("id", "text", "probability", "prediction").collect().
-                foreach {
+        val test = ss.createDataFrame(Seq((1L, "spark i j k"), (2L, "l m n"), (3L, "spark a"), (4L, "apache hadoop"),(5L, "spard  probability is bad"))).toDF("id", "text")
+        model.transform(test).select("id", "text", "probability", "prediction")
+                .collect().foreach {
                     case Row(id: Long, text: String, prob: Vector, prediction: Double) =>
                         println(s"($id, $text) --> prob=$prob, prediction=$prediction")
                 }
